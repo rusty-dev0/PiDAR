@@ -1,0 +1,3 @@
+[submodule "electronics"]
+	path = electronics
+	url = https://github.com/rusty-dev0/kinetic.git
