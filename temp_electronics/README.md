@@ -1,0 +1,1 @@
+Stasis won't let me submit KiCAD stuff in a diff repo even though its linked as a submodule so I'm making a temporary copy here, but please check the actual submodule itself.
