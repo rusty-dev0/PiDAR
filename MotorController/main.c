@@ -9,31 +9,44 @@
 #define RIGHT_IN2  6
 #define RIGHT_PWM  7
 
-int main()
+DualMotorDriver* setup()
 {
     stdio_init_all();
-    printf("Motor Controller Started\n");
 
-    DualMotorDriver motor_driver;
-    tb6612fng_init(&motor_driver, LEFT_IN1, LEFT_IN2, LEFT_PWM, RIGHT_IN1, RIGHT_IN2, RIGHT_PWM);
+    printf("[in setup()] setting up motor controller\n");
 
-    printf("Motor driver initialized\n");
+    DualMotorDriver controller;
+    tb6612fnd_init(&controller, LEFT_IN1, LEFT_IN2, LEFT_PWM, RIGHT_IN1, RIGHT_IN2, RIGHT_PWM);
 
-    while (true) {
-        printf("Moving forward\n");
-        tb6612fng_forward(&motor_driver, 32768);  // half speed
+    printf("[in setup()] motor controller sucessfully initialized\n");
+    return &controller;
+}
+
+int main()
+{
+    DualMotorDriver* controller = setup();
+
+    while (1)
+    {
+        printf("[in main()] moving forward\n");
+        tb6612fng_forward(controller, 32768);
         sleep_ms(2000);
 
-        printf("Turning left\n");
-        tb6612fng_turn_left(&motor_driver, 32768);
-        sleep_ms(1000);
+        printf("[in main()] moving backward\n");
+        tb6612fng_backward(controller, 32768);
+        sleep_ms(2000);
 
-        printf("Rotating right\n");
-        tb6612fng_rotate_right(&motor_driver, 32768);
-        sleep_ms(1000);
+        printf("[in main()] turning left\n");
+        tb6612fng_turn_left(controller, 32768);
+        sleep_ms(2000);
 
-        printf("Stopping!\n");
-        tb6612fng_stop(&motor_driver);
-        sleep_ms(1000);
+        printf("[in main()] turning right\n");
+        tb6612fng_turn_right(controller, 32768);
+        sleep_ms(2000);
+
+        printf("[in main()] stopping\n");
+        tb6612fng_stop(controller);
+        sleep_ms(2000);
     }
+
 }
