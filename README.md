@@ -2,6 +2,8 @@
 An autonomous robot that builds a real-time 2D map of an unknown room using LiDAR and SLAM, with live visualization and path tracking, and even a custom development board for all of its locomotive needs!
 
 ![PiDAR CAD ASMBLY](./design/2d%20images/pidar-asm.png)
+![kineticBoard Front](./design/2d%20images/pcb-front.png)
+![kineticBoard Back](./design/2d%20images/pcb-back.png)
 
 ### Programming stuff:
 
